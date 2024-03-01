@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Détail d'une actualité{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Détail de l'actualité</h1>
+
+        <p>Voici les catactéristiques principales. Pour modifier, cliquer sur le bouton correspondant.</p>
+
+        <table class="table" style="background-color: #EFEFEF;" data-toggle="table" data-card-view="true">
+            <tbody>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Numéro d'actualité</th>
+                    <td>{{ event.id }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Titre</th>
+                    <td>{{ event.titre }}</td>
+                </tr>
+                <tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Image d'illustration</th>
+                    <td> <img class="img-fluid" src= "{{ absolute_url(asset("event/" ~ event.imageEvent)) }}" alt="{{'Image actualité' ~ event.titre }}"></td>
+                </tr>
+                    <th style="background-color: #FFD0A8;">Date de publication</th>
+                    <td>{{ event.createdAt ? event.createdAt|date('d-m-Y / H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Date de mise à jour</th>
+                    <td>{{ event.updatedAt ? event.updatedAt|date('d-m-Y / H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Contenu</th>
+                    <td>{{ event.contenu }}</td>
+                </tr>
+
+       
+            </tbody>
+        </table>
+
+        <div class="alignement">
+
+            <a class="btn show_btn" href="{{ path('event_index') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à la liste</a>
+
+            <a class="btn edit_btn" href="{{ path('event_edit', {'id': event.id}) }}"><i class="fa fa-floppy-o mr-3"></i>Modifier</a>
+
+            {{ include('event/_delete_form.html.twig') }}
+
+        </div>
+    </div>
+{% endblock %}

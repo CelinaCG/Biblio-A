@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Edition utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Edition du profil de {{ user.firstname }} {{ user.lastname }}</h1>
+
+      
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+
+                <div class="card bg-light border border-secondary">
+
+                    {{ form_start(form) }}
+
+            
+                    <div class="col text-uppercase font-weight-bold mt-3">
+                        {{ form_row(form.lastname) }}
+                    </div>
+                        
+                    <div class="col text-uppercase font-weight-bold">
+                        {{ form_row(form.firstname) }}
+                    </div>
+            
+                    <div class="col text-uppercase font-weight-bold">
+                        {{ form_row(form.email) }}
+                    </div>
+
+                    <div class="alignement"> 
+                        <button class="btn create_btn"><i class="fa fa-floppy-o mr-3"></i>{{ button_label|default('Mettre à jour') }}</button> 
+                        <a class="btn save_btn" href="{{ path('users_index') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à la liste</a>
+                    </div>
+                    {{ form_end(form) }}
+
+
+                
+                </div>
+            </div>
+        </div>
+      
+        <div class="alignement">
+            <a class="btn show_btn" href="{{ path('admin') }}"><i class="fa fa-arrow-left mr-3"></i>Retour au profil</a>
+        </div>
+    </div>
+{% endblock %}

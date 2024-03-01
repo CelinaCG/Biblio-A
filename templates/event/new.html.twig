@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Nouvelle actualité{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class= "text-center">Création d'une nouvelle actualité</h1>
+
+        {{ include('event/_form.html.twig') }}
+
+        <div class="alignement">
+            <a class= "btn show_btn"  href="{{ path('event_index') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à la liste</a>
+        </div>
+    </div>
+{% endblock %}

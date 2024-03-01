@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Détail d'un ouvrage "{{ book.titre }}"{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Détail de l'ouvrage "{{ book.titre }}"</h1>
+
+        <p class="text-center">Voici les catactéristiques principales. Pour modifier, cliquer sur le bouton correspondant.</p>
+
+        <div class="col-md-8 offset-md-2">
+        <table class="table" style="background-color: #EFEFEF;" data-toggle="table" data-card-view="true">
+            <tbody>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Couverture</th>
+                    <td> 
+                        <div class="text-center">
+                            <img src="{{ absolute_url(asset("bookcover/" ~ book.imageLivre)) }}" alt="{{ 'Image du document' ~ book.titre }}">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">ISBN</th>
+                    <td class="text-center">{{ book.isbn }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">EAN</th>
+                    <td class="text-center">{{ book.ean }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Titre</th>
+                    <td class="text-center">{{ book.titre }}</td>
+                </tr>
+
+                <tr>
+                    <th style="background-color: #FFD0A8;">Auteur</th>
+                    <td class="text-center">{{ book.auteur }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Co-auteur</th>
+                    <td class="text-center">{{ book.coauteur }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Editeur</th>
+                    <td class="text-center">{{ book.editeur }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Année de parution</th>
+                    <td class="text-center">{{ book.annee }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Format</th>
+                    <td class="text-center">{{ book.format }}</td>
+                </tr>
+    
+                <tr>
+                    <th style="background-color: #FFD0A8;">Langue</th>
+                    <td class="text-center">{{ book.langue }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Cote</th>
+                    <td class="text-center">{{ book.cote }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Type de document</th>
+                    <td class="text-center">{{ book.typeDocument }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Catégorie</th>
+                    <td class="text-center">{{ book.categorie }}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #FFD0A8;">Resumé</th>
+                    <td class="text-center">{{ book.resume }}</td>
+                </tr>
+        
+            </tbody>
+
+        </table>
+        </div>
+
+        <div class="alignement">
+       
+            <a class="btn show_btn" href="{{ path('book_index') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à la liste</a>
+            <a class="btn edit_btn" href="{{ path('book_edit', {'id': book.id}) }}"><i class="fa fa-floppy-o mr-3"></i>Modifier</a>
+        </div>
+
+        
+
+    </div>
+{% endblock %}

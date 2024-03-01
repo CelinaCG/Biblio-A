@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Horaires{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-cottonbro-informations-pratiques.jpg")) }}')">
+        <div class="container">
+        
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Horaires</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <p class="mt-5">Veuillez noter que les journées des jeudis sont consacrées à l'inventaire des collections. La bibliothèque est alors fermée au public.</p>
+
+        <h2 class="pb-2 color_border">Période scolaire</h2>
+
+        <div class="table-responsive mt-5 mb-5">
+            <table class="table table-hover table-bordered ">
+
+                <tbody>
+                    <tr style="background-color: #7C2BA8;" class="text-light">
+                        <th></th>
+                        <th>Lundi</th>
+                        <th>Mardi</th>
+                        <th>Mercredi</th>
+                        <th>Jeudi</th>
+                        <th>Vendredi</th>
+                        <th>Samedi</th>
+                    </tr>
+                    <tr class="font-weight-bold">
+                        <td>Espace adultes</td>
+                        <td>14h - 19h</td>
+                        <td>14h - 19h</td>
+                        <td>10h - 18h</td>
+                        <td>Fermé</td>
+                        <td>14h - 19h</td>
+                        <td>10h - 18h</td>
+                    </tr>
+                    <tr class="font-weight-bold">
+                        <td>Espace jeunesse</td>
+                        <td>16h30 - 19h</td>
+                        <td>16h30 - 19h</td>
+                        <td>10h - 18h</td>
+                        <td>Fermé</td>
+                        <td>16h30 - 19h</td>
+                        <td>10h - 18h</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="pb-2 color_border">Petites vacances scolaires</h2>
+
+        <div class="table-responsive mt-5 mb-5">
+            <table class="table table-hover table-bordered ">
+
+                <tbody>
+                    <tr style="background-color: #7C2BA8;" class="text-light">
+                        <th></th>
+                        <th>Lundi</th>
+                        <th>Mardi</th>
+                        <th>Mercredi</th>
+                        <th>Jeudi</th>
+                        <th>Vendredi</th>
+                        <th>Samedi</th>
+                    </tr>
+                    <tr class="font-weight-bold">
+                        <td>Espace adultes et jeunesse</td>
+                        <td>14h - 19h</td>
+                        <td>14h - 19h</td>
+                        <td>14h - 18h</td>
+                        <td>Fermé</td>
+                        <td>14h - 19h</td>
+                        <td>10h - 18h</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="pb-2 color_border">Vacances d'été</h2>
+
+        <div class="table-responsive mt-5 mb-5">
+            <table class="table table-hover table-bordered ">
+
+                <tbody>
+                    <tr style="background-color: #7C2BA8;" class="text-light">
+                        <th></th>
+                        <th>Lundi</th>
+                        <th>Mardi</th>
+                        <th>Mercredi</th>
+                        <th>Jeudi</th>
+                        <th>Vendredi</th>
+                        <th>Samedi</th>
+                    </tr>
+                    <tr class="font-weight-bold">
+                        <td>Espace adultes et jeunesse</td>
+                        <td>14h - 19h</td>
+                        <td>Fermé</td>
+                        <td>14h - 18h</td>
+                        <td>Fermé</td>
+                        <td>Fermé</td>
+                        <td>10h - 12h30 / 14h - 18h</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+      
+
+    </div>
+
+    
+
+    <div class="alignement">
+        <a class="btn show_btn mt-4" href="{{ path('accueil') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+    </div>
+
+  
+
+{% endblock %}

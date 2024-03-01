@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Nouvel emprunt{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Faire une demande d'emprunt</h1>
+
+        <p>La durée de l'emprunt est de 4 semaines.</p>
+        
+        {{ include('emprunt/_form.html.twig') }}
+
+        <p class="mt-4">Votre demande d'emprunt sera examinée par nos bibliothècaires. Vous trouverez la liste de vos emprunts sur votre page de profil.</p>
+
+        <a href="{{ path('profil_index') }}">Retour à votre profil</a>
+    </div>
+{% endblock %}

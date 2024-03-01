@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Sélection Jeunesse{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-pixabay-selectionjeunesse.jpg")) }}')">
+        <div class="container">
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Selection jeunesse</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        {# Livre/album #}
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">Livre et album</h2>
+
+        <p class="mt-4 mb-4 text-justify">Ces livres nous ont émus, amusés, émerveillées... Vos enfants et ados les aimeront à coup sûr.</p>
+
+        <div class ="flex justify-content-center  flex-wrap justify-content-center">
+            {% for listeLivreJeunesse in selectionLivreJeunesse %}
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    
+                    <a href="{{ path('detail_book', {"slug": listeLivreJeunesse.slug}) }}">
+                    
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img id="imageLivre" src ="{{ asset('bookcover/' ~ listeLivreJeunesse.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ listeLivreJeunesse.titre }}">
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">{{ knp_pagination_render(selectionLivreJeunesse) }}</div>
+
+        {# BD/Manga #}
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">Bande-dessinée et manga</h2>
+
+        <p class="mt-4 mb-4 text-justify">Besoin d'aventures ? Nous avons déniché pour toi le meilleur de la bande déssinée et du manga. Bonne lecture !</p>
+        
+        <div class ="flex justify-content-center  flex-wrap justify-content-center">
+            {% for listeBdJeunesse in selectionBdJeunesse %}
+                <div class="card mx-3 my-3" style = "width: 12rem;">
+                    
+                    <a href="{{ path('detail_book', {"slug": listeBdJeunesse.slug}) }}">
+                    
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img id="imageLivre" src ="{{ asset('bookcover/' ~ listeBdJeunesse.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ listeBdJeunesse.titre }}">
+                            </div>
+                        </div>
+                    </a>
+    
+                    
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">{{ knp_pagination_render(selectionBdJeunesse) }}</div>
+
+        {# Livre scolaire #}
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">Livre scolaire</h2>
+
+        <p class="mt-4 mb-4 text-justify">Des difficultés à faire tes devoirs ? Nous avons choisi pour toi des livres qui pourront t'aider. N'hésites pas à en parler à un/une bibliothécaire si tu as besoin d'aide.</p>
+        
+        <div class ="flex justify-content-center  flex-wrap justify-content-center">
+            {% for listeLivreScolaire in selectionLivreScolaire %}
+                <div class="card mx-3 my-3" style = "width: 12rem;">
+                    
+                    <a href="{{ path('detail_book', {"slug": listeLivreScolaire.slug}) }}">
+                    
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img id="imageLivre" src ="{{ asset('bookcover/' ~ listeLivreScolaire.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ listeLivreScolaire.titre }}">
+                            </div>
+                        </div>
+                    </a>
+    
+                    
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">{{ knp_pagination_render(selectionLivreScolaire) }}</div>
+
+
+        <div class="alignement">
+            <a class="btn show_btn" href="{{ path('accueil') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+        </div>
+
+    </div>
+
+{% endblock %}

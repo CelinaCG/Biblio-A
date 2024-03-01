@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Détail d'un ouvrage - {{ book.titre }}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="card bg-light mt-5 mb-3" style="max-width: 1200px;">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img class="img-fluid image_margin" src="{{ asset('bookcover/' ~ book.imageLivre) }}" alt="{{'Image du document' ~ book.titre }} ">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title mb-5 font-weight-bold ">{{ book.titre }}</h2>
+                    <p class="card-text"><span class="font-weight-bold">Auteur(e)</span> : {{ book.auteur }}</p>
+                    <p class="card-text"><span class="font-weight-bold">Co-auteur(e)</span> : {{ book.coauteur }}</p>
+                    <p class="card-text"><span class="font-weight-bold">Editeur</span> : {{ book.editeur }}</p>
+                    <p class="card-text"><span class="font-weight-bold">Année de publication</span> : {{ book.annee }}</p>
+                    <p class="card-text"><span class="font-weight-bold">Langue</span> : {{ book.langue }}</p>
+                    <hr>
+                    <p class="card-text"><span class="font-weight-bold">Type de document</span> : {{ book.typeDocument }}</p>
+                    <p class="card-text"><span class="font-weight-bold">Catégorie/Sujet</span> : {{ book.categorie }}</p>
+                    <p class="card-text"><span class="font-weight-bold">Format</span> : {{ book.format }}</p>
+                    <p class="card-text"><span class="font-weight-bold">Côte</span> : {{ book.cote }}</p>
+                    <p class="card-text"><span class="font-weight-bold">ISBN</span> : {{ book.isbn }}</p>
+                    <p class="card-text"><span class="font-weight-bold">EAN</span> : {{ book.ean }}</p>
+                    <p class="card-text text-justify"><span class="font-weight-bold">Résumé</span> : {{ book.resume }}</p>
+
+        
+
+                    {# Emprunt #}
+
+                    {% set aucun_emprunt = true %}
+ 
+                    {% for emprunt in emprunts %}
+
+                        {% if (emprunt.book.id == book.id) %}
+
+                        {% set aucun_emprunt = false %}
+
+                            {% if (emprunt.validation == false ) %}
+
+                            <button type="button" class="btn emprunt_btn">Disponible</button>
+                      
+                            <a class= "btn create_btn" href="{{ path('emprunt_new', {'bookId': book.id}) }}" >Emprunter</a>
+
+                            {% else %}
+
+                            <button type="button" class="btn emprunt_btn mb-2"> Retour le {{ emprunt.dateFin ? emprunt.dateFin|date('d-m-Y') : '' }}</button>
+
+                            {% endif %}
+
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if (aucun_emprunt == true) %}
+
+                        <button type="button" class="btn emprunt_btn">Disponible</button>
+                        <a class= "btn create_btn" href="{{ path('emprunt_new', {'bookId': book.id}) }}" class=" btn btn-secondary mb-3">Emprunter</a>
+                    {% endif %}
+
+                    <div class="mt-3">
+                        <p>Pour emprunter un exemplaire, il est nécessaire d'être authentifié.</p>
+                    </div>
+
+              
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+
+    <div class="alignement">
+        <a class="btn show_btn mt-4" href="{{ path("accueil") }}" role="button"><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>Retour à l'accueil</a>
+    </div>
+
+</div>
+
+{% endblock %}

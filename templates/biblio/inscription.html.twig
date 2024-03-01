@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Inscription{% endblock %}
+
+{% block body %}
+   
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-cottonbro-inscription-bibliotheque.jpg")) }}')">
+        <div class="container">
+         
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Inscription</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <p class="mt-5">L'entrée à la bibliothèque est libre et gratuite. Les documents peuvent être consultés librement sur place.</p>
+
+        <p>Si vous souhaitez emprunter les documents, une inscription est nécéssaire.</p>
+
+        <h2 class="pb-2 color_border">Conditions d'inscription</h2>
+
+        <h4 class="mt-4">Compte en ligne</h4>
+
+        <p class="mt-4">L'inscription en ligne se fait avec votre email et un mot de passe. Vous accèderez à votre profil et vous pourrez emprunter des ouvrages en vue de les récupérer ultérieurement à la bibliothèque avec votre carte d'emprunt.</p>
+       
+        <p>Vous pouvez accéder à votre compte en cliquant sur le bouton suivant :</p>
+
+        <div class="text-center">
+            <a class="btn create_btn" href="{{ path('app_login') }}">Connexion compte<i class="fa fa-sign-in ml-2"></i></a>
+        </div>
+
+        <h4 class="mt-4">L'inscription sur place</h4>
+
+        <p class="mt-4">Vous pouvez vous rendre à la bibliothèque pour vous inscrire. Nos bibliothècaires sont disponibles pour vous assister dans vos démarches.</p>
+
+        <p>Vous recevrez une carte de bibliothèque à l'issue de votre inscription. Elle vous permettra d'emprunter les documents sur place.</p>
+
+        <h2 class="pb-2 color_border">Quotas et durée d'emprunt</h2>
+
+        <p class="mt-5">Avec votre carte et votre compte, vous pouvez emprunter:</p>
+
+        <ul>
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>8 livres</li>   
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>8 bandes dessinées</li>   
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>2 annales / Livres scolaires</li>   
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>2 livres préparation concours</li>   
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>8 livres audio</li>   
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>8 revues</li>   
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>2 méthodes de langue</li>
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>2 jeux</li>    
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>8 partitions</li>   
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>CD : nombre illimité</li>
+            <li><i class="fa fa-chevron-circle-right mr-3"></i>DVD (fictions et  documentaires) : nombre illimité</li>
+        </ul>
+        
+        <p class="font-italic-bold">La durée d'emprunt est de 4 semaines.</p>
+        
+        <h2 class="pb-2 color_border">Tarifs</h2>
+
+        <div class="table-responsive mt-5 mb-5">
+            <table class="table table-hover table-bordered ">
+
+                <tbody>
+                    <tr style="background-color: #7C2BA8;" class="text-light">
+                        <th>Public</th>
+                        <th>Tarif</th>
+                    </tr>
+                    <tr>
+                        <td> 
+                            <span class="font-weight-bold">Enfants (- 18 ans)</span> habitant ou scolarisés à Vitry-sur-Seine <br>
+                            <span class="font-weight-bold">Etudiants de moins de 25 ans</span> habitant ou scolarisés à Vitry-sur-Seine <br>
+                            <span class="font-weight-bold">Demandeurs d'emploi</span> et détenteurs de minima sociaux habitant à Vitry-sur-Seine</td>
+                        <td><span class="font-weight-bold">Gratuit</span></td>
+                    </tr>
+                    <tr>
+                        <td>Usagers <span class="font-weight-bold">habitant ou travaillant</span> à Vitry-sur-Seine</td>
+                        <td><span class="font-weight-bold">5,5 €</span></td>
+                    </tr>
+                    <tr>
+                        <td>Usagers <span class="font-weight-bold">non domiciliés à Vitry-sur-Seine</span></td>
+                        <td><span class="font-weight-bold">20 €</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="mt-4">Justificatifs à présenter</h4>
+
+        <H5>Adultes</h5>
+
+        <ul>
+            <li><i class="fa fa-check mr-3"></i>Pièce d’identité (carte nationale d’identité, permis de conduire, carte de séjour, carte d'étudiant…)</li>
+            <li><i class="fa fa-check mr-3"></i>Justificatif de domicile datant de moins de 3 mois (quittance de loyer, facture d’électricité ou de téléphone…, bulletin de salaire, chéquier…) ou déclaration sur l’honneur et certificat de résidence pour les personnes hébergées par un tiers.</li>
+        </ul>
+
+
+        <p>Le cas échéant :</p>
+
+        <ul class="justify">
+            <li><i class="fa fa-check mr-3"></i>Pour les étudiants : une carte d’étudiant de l’année en cours</li>
+            <li><i class="fa fa-check mr-3"></i>Pour les demandeurs d’emploi et les détenteurs de minima sociaux : un justificatif de moins de 3 mois</li>
+        </ul>
+
+        <h5>Enfants (- 18 ans)</h5>
+
+        <ul class="justify">
+            <li><i class="fa fa-check mr-3"></i>Autorisation parentale remplie et signée par un parent ou la personne responsable de l’enfant</li>
+            <li><i class="fa fa-check mr-3"></i>Justificatif de domicile datant de moins de 3 mois (quittance de loyer, facture d’électricité ou de téléphone…, bulletin de salaire, chéquier …) ou déclaration sur l’honneur et certificat de résidence (pour les enfants hébergés par un tiers)</li>
+        </ul>
+
+        <p class="justify">La carte d’adhérent nominative et strictement personnelle est valable un an de date à date. Elle permet d’effectuer des emprunts dans tous les points du réseau. Son titulaire, (ou le responsable légal pour les mineurs), est tenu de vérifier l'état des documents avant emprunt et est responsable des documents empruntés.</p>
+
+  
+
+        <div class="alignement">
+            <a class="btn show_btn"  href="{{ path("accueil") }}" role="button"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+        </div>
+
+    </div>
+
+    
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Liste des actualités{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Liste des actualités</h1>
+
+        <p>Voici le panneau d'administration de toutes nos actualités. Vous pouvez créer, éditer et supprimer les articles si nécessaire.</p>
+
+        <p>Pour faciliter la navigation, vous pouvez utiliser le bouton de la flèche située à gauche pour filtrer les colonnes que vous souhaitez visualiser.</p>
+        
+        <div class="d-flex justify-content-center">
+            <a class="btn create_btn" href="{{ path('event_new') }}">Nouvelle entrée<i class="fa fa-pencil ml-2"></i></a>
+        </div>
+        
+        <table class="table" style="background-color: #EFEFEF;" data-toggle="table" data-search="true" data-show-columns="true" data-pagination="true" data-buttons-align="left">
+            <thead style="background-color: #7C2BA8;">
+                <tr class="text-light">
+                    <th data-sortable="true">N° d'actu</th>
+                    <th>Image</th>
+                    <th data-sortable="true">Titre</th>
+                    <th data-sortable="true">Date de création</th>
+                    <th>Date d'édition</th>
+                    <th>Contenu</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr class="font-weight-bold">
+                    <td>{{ event.id }}</td>
+                    <td> <img class="miniImage" src= "{{ absolute_url(asset("event/" ~ event.imageEvent)) }}" alt="{{ 'Image actualité' ~ event.titre }}"></td>
+                    <td>{{ event.titre }}</td>
+                    <td>{{ event.createdAt ? event.createdAt|date('d-m-Y') : '' }}</td>
+                    <td>{{ event.updatedAt ? event.updatedAt|date('d-m-Y') : '' }}</td>
+                    <td>{{ event.contenu|length > 50 ? event.contenu|slice(0, 50) ~ "..." : event.contenu }}</td>
+                    <td>
+                        <a class="btn btn-sm show_btn margin" href="{{ path('event_show', {'id': event.id}) }}">Détail</a>
+                        <a class="btn btn-sm edit_btn margin" href="{{ path('event_edit', {'id': event.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="alignement">       
+            <a class="btn show_btn" href="{{ path('admin') }}"><i class="fa fa-arrow-left mr-3"></i>Retour au profil</a>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Actualité{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-suzy-hazelwood-journaux.jpg")) }}')">
+        <div class="container">
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Actualité</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class= "flex justify-content-center  flex-wrap justify-content-center">
+            <div class="card-deck mt-4">
+           
+                {% for event in events %}
+                    <div class="card bg-light" style="width: 27rem;">
+                        <img src="{{ absolute_url(asset("event/" ~ event.imageEvent)) }}" class="card-img-top" alt="Image de l'actualité de la bibliothèque Atlantide">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.titre }}</h5>
+                            <p class="card-text">{{ event.contenu|length > 80 ? event.contenu|slice(0, 80) ~ "..." : event.contenu }}</p>
+                            <a href="{{ path("actualite_detail", {'slug': event.slug} ) }}" class="btn show_btn">Lire plus<i class = "fa fa-arrow-right ml-2"></i></a>
+                        </div>
+                        <div class="card-footer">
+                            <small>Publié le {{ event.createdAt ? event.createdAt|date('d/m/Y') : '' }}</small>
+                        </div>
+                    </div>
+                    {% else %}
+                    <tr>
+                        <td colspan="5">Aucun enregistrement trouvé</td>
+                    </tr>
+                {% endfor %}
+                        
+            </div>
+        </div>
+
+        <div class="alignement">
+            <a class="btn show_btn mt-4" href="{{ path('accueil') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+        </div>
+
+
+    </div>
+{% endblock %}

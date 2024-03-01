@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Politique de confidentialité{% endblock %}
+
+{% block body %}
+    
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-cottonbro-politique-confidentialite.jpg")) }}')">
+        <div class="container row d-flex align-items-center flex-wrap justify-content-center">
+            
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Politique de confidentialité</h1>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="text-justify">
+
+            <p>Merci de lire attentivement les présentes modalités de la politique de confidentialité du présent site avant de le parcourir. En vous connectant sur ce site, vous acceptez sans réserve les présentes modalités.</p>
+
+            <h2 class="mb-3">Introduction</h2>
+            <p>Dans le cadre de son activité, la bibliothèque municipale Atlantide, située au 36 avenue Maximilien Robespierre, 94400 Vitry-sur-Seine, est amenée à collecter et à traiter des informations dont certaines sont qualifiées de "données personnelles". La bibliothèque Atlantide attache une grande importance au respect de la vie privée, et n’utilise que des données de manière responsable et confidentielle et dans une finalité précise.</p>  <br/>
+
+            {# Données personnelles #}
+
+            <h2 class="mb-3">Données personnelles</h2>
+            <p>Sur le site web, il y a 2 types de données susceptibles d’être recueillies :</p>
+            <ul>
+                <li class="mb-3"><h5>Les données transmises directement</h5><br>Ces données sont celles que vous nous transmettez directement, via un formulaire de contact ou bien par contact direct par email. Sont obligatoires dans le formulaire de contact les champs "prénom","nom", "mot de passe", "confirmation de mot de passe" (si inscription) et « email ».</li>
+                <li><h5>Les données collectées automatiquement</h5><br>Lors de vos visites, une fois votre consentement donné, nous pouvons recueillir des informations de type « web analytics » relatives à votre navigation, la durée de votre consultation, votre adresse IP, votre type et version de navigateur. La technologie utilisée est le cookie.</li>
+            </ul>  <br/>
+
+            {# Utilisation des données #} 
+
+            <h2 class="mb-3">Utilisation des données</h2>
+
+            <h5>Statistiques et mesures d’audience</h5><br>
+
+            <p>Le site est exempt de tout traqueur tiers et l’outil de suivi des visiteurs utilisé est Matomo (ex Piwik). C’est l’un des seuls à avoir reçu l’aval de la CNIL et il est donc conforme au RGPD.</p>
+            
+            <p>Matomo est exécuté sur le même hébergement que le site principal. Aucune information d’audience ou de visite n’est partagée avec des services tiers. Les adresses IP sont anonymisées, et vous pouvez désactiver le suivi Matomo en réglant votre navigateur pour ne pas l’être.</p>
+
+            <p>Les données que vous nous transmettez directement sont utilisées dans le but de vous re-contacter et/ou dans le cadre de la demande que vous nous faites. Elles nous permettent de mesurer l'audience de notre site web, les consultations et les éventuelles erreurs afin d’améliorer constamment l’expérience des utilisateurs. Ces données sont utilisées par la bibliothèque Atlantide, responsable du traitement des données, et ne seront jamais cédées à un tiers ni utilisées à d’autres fins que celles détaillées ci-dessus.</p>
+
+            <h5>État du suivi de votre navigation</h5>
+
+            <div class="row d-flex align-items-center flex-wrap justify-content-center">
+           
+           {# Iframe Matomo #}
+
+            <iframe
+            style="border: 0; height: 200px; width: 600px;"
+            src="https://matomo.bibliotheque-atlantide.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&fontFamily=arial"
+            ></iframe>
+
+            
+            </div>
+
+            {# Base légale #}
+
+            <h2 class="mb-3">Base légale</h2>
+            <p>Les données personnelles ne sont collectées qu’après consentement obligatoire de l’utilisateur. Ce consentement est valablement recueilli (boutons et cases à cocher), libre, clair et sans équivoque.</p>  <br/>
+
+            {# Conservation #}
+
+            <h2 class="mb-3">Durée de conservation</h2> 
+            <p>Les données seront sauvegardées durant une durée maximale de 3 ans.</p>  <br/>
+
+            {# Cookies #}
+
+            <h2 class="mb-3">Cookies</h2>
+
+            <p>Le site a recours aux "cookies". Un "cookie" est un fichier de petite taille (mpoins de 4 ko) stocké par le site sur le disque dur de l'utilisateur et contient des informations relatives aux habitudes de navigation de l'utilisateur.</p>
+
+            <p>Ce fichier permet au site de traiter des statistiques et des informations sur le traffic, de faciliter la navigation et d'améliorer le service pour le confort de l'utilisateur.</p>
+
+            <p>Pour l'utilisation des fichiers "cookies" impliquant la sauvegarde et l'analyse des données à caractère personnel, le consentement de l'utilisateur est nécéssairement demandé. </p>
+
+            <p>Ce consentement de l'utilisateur est considéré comme valide pour une durée de 13 mois maximum. A l'issue de cette période, le site demandera à nouveau l'autorisation de l'utilisateur pour enregistrer des fichiers "cookies" sur son disque dur.</p>  <br/>
+
+            {# Vos droits #}
+
+            <h2 class="mb-3">Vos droits concernant les données personnelles</h2>
+            <p>Vous avez le droit de consultation, demande de modification ou d’effacement sur l’ensemble de vos données personnelles. Vous pouvez également retirer votre consentement au traitement de vos données.</p>  <br/>
+
+            <h2 class="mb-3">Contact délégué à la protection des données</h2>
+         
+            <p>M. Mikoshiba Takashi - email : biblioatalantide@gmail.com</p>  <br/>
+
+      
+        </div>
+
+        
+        <div class="alignement">
+            <a class="btn show_btn" href="{{ path('accueil') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+        </div>
+    </div>
+{% endblock %}

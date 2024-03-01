@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Recherche simple{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-kampus-production-recherche.jpg")) }}')">
+        <div class="container">
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Recherche</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <p class="text-center mb-5">Besoin de retrouver un titre en particulier de notre catalogue ? N'hésitez pas à utiliser notre moteur de recherche.</p>
+
+        {# formulaire de recherche #}
+
+        <div class="form-group row justify-content-center mb-5">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card card-sm bg-light border border-secondary">
+                    {% form_theme searchForm 'bootstrap_4_layout.html.twig' %}
+                
+                    {{ form_start(searchForm) }}
+                    
+                    <div class="card-body row align-items-center ">
+                
+                        <div class="col">
+                            {{ form_row(searchForm.searchEngine, {'label': " ", 'attr': {'placeholder': 'Rechercher le titre, l\'auteur, la catégorie...'}}) }}
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn create_btn my-4">Rechercher <i class="fa fa-search ml-3"></i> </button>
+                        </div>
+                    </div>
+                    {{ form_end(searchForm) }}
+               
+                </div>
+            </div>
+        </div>
+
+        {# Boucle de recherche des ouvrages #}
+    
+        
+        <div class="row justify-content-center">
+            
+            {% for book in books %}
+            <div class="card m-3 d-flex justify-content-center  border-secondary" style="width: 15rem;">
+                <div class="card-header header" style="background-color: #663384; color: white;">
+                {{ book.typeDocument }}
+                </div>
+
+                <div class ="row align-items-end">
+                    <div class= "col">
+                        <img id="imageLivre" src ="{{ asset('bookcover/' ~ book.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ book.titre }}">
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <h4 class = "card-title">{{ book.titre|length > 30 ? book.titre|slice(0, 30) ~ '...' : book.titre }}</h4>
+                   
+                    <h5 class = "card-subtitle mb-2">{{ book.auteur }}</h5>
+                 
+                    <p class="card-text resume_card">{{ book.resume |length > 80 ? book.resume|slice(0, 80) ~ '...' : book.resume }}</p>
+                  
+                    <a href="{{ path('detail_book', {'slug': book.slug}) }}" class="btn create_btn">Voir le détail<i class="fa fa-arrow-circle-right ml-2"></i></a>
+                </div>
+                
+            </div>
+        
+            {% endfor %}
+            
+        
+        </div>
+        
+        <div class = "pagination">
+            {{ knp_pagination_render(books) }}
+        </div>
+        
+        <div class="alignement">
+            <a class="btn show_btn" href="{{ path('accueil') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+        </div>
+    </div>
+{% endblock %}

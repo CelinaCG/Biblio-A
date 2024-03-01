@@ -1,0 +1,13 @@
+<h1>Votre compte Bibliothèque Atlantide : Réinitialisation de votre mot de passe</h1>
+
+<p>Bonjour,</p>
+
+<p>Vous nous avez demandé à réinitialiser votre mot de passe. Pour cela, nous vous remercions de bien vouloir cliquer sur le lien suivant :</p>
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">Réinitialiser votre mot de passe</a>
+
+<p>Ce lien va expirer dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+<p>Cordialement,</p>
+
+<p>L'équipe de la bibliothèque</p>

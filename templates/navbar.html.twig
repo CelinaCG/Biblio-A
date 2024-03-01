@@ -1,0 +1,119 @@
+{# Navbar 1 coordonnées et login #}
+<header>
+    <div class="p-1 text-white navbar_1 " style="background-color: #631091;">
+        <div class="container">
+            <div class= "flex justify-content-between  flex-wrap justify-content-center">
+                <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 top_bar">
+                    <i class="fa fa-phone mr-2" aria-hidden="true"></i>10 87 06 42 11 &nbsp; &nbsp; 
+                    <a href="{{ path("contact") }}"> <i class="fa fa-envelope mr-2"></i>Nous contacter &nbsp;</a>
+                  
+
+                </div>
+
+                <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            
+                    {% if app.user %}
+                    {# Accès compte admin bibliothècaire #}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('admin') }}" class="nav-link px-2"><i class="fa fa-user mr-2"></i>Profil de {{ app.user.firstname }}</a>
+
+                    {% else %}
+                    {# Accès compte lecteur #}              
+                    <a href="{{ path('profil_index') }}" class="nav-link px-2"><i class="fa fa-user mr-2"></i>Profil de {{ app.user.firstname }}</a>
+            
+                    {% endif %} 
+                    <a href="{{ path('app_logout') }}" class="nav-link px-2"><i class="fa fa-sign-out mr-2"></i>Déconnexion</a>
+            
+                    {% else %}
+                    <a href="{{ path('app_login') }}" class="nav-link px-2"><i class="fa fa-sign-in mr-1"></i>Connexion  &nbsp;</a>
+
+                    <a href="{{ path('app_register') }}" class="nav-link px-2"><i class="fa fa-vcard mr-1"></i>Inscription</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {# Fin navbar 1 #}
+
+    {# Logo et citation #}
+
+    <div class="container">
+        <div class="row d-flex align-items-center flex-wrap justify-content-center">
+            {# Logo #}
+            <div class=" nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center ml-2 mr-2 mb-md-0">
+                <a class="navbar-brand" href="{{ path("accueil") }}">
+                <img src="{{ absolute_url(asset("images/logo-biblio-atlantide2.png")) }}" class="img-fluid" alt="Logo bibliothèque Atlantide">
+                </a>
+            </div>
+            {# Citation #}
+            <div class="flex justify-content-between  flex-wrap justify-content-center">
+                <figure class="text-center ml-2 mr-2">
+                    <blockquote class="blockquote">
+                        <p>Une bibliothèque est un sanctuaire de la pensée pure.</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                        Paul Auster
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    {# Menu #}
+    
+    <nav class="navbar navbar-expand-lg  navbar-light" style="background-color: #FFD0A8;">
+        <div class="container">
+            <a class="navbar-brand main_navbar" href="{{ path("accueil") }}"><i class="fa fa-home mr-1"></i>Accueil</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">  
+                        <a class="nav-link nav_option" href="{{ path("recherche_simple") }}"><i class="fa fa-search mr-1"></i>Recherche</a> 
+                    </li>
+
+                    
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link nav_option dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Infos pratiques</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #FFD0A8;">
+                            <a class="dropdown-item nav_option" style="background-color: #FFD0A8;" href="{{ path("presentation") }}">Présentation</a>
+                            <a class="dropdown-item nav_option" style="background-color: #FFD0A8;" href="{{ path("horaires") }}">Horaires</a>
+                            <a class="dropdown-item nav_option" style="background-color: #FFD0A8;" href="{{ path("inscription") }}">Modalités d'inscription</a>
+                            <a class="dropdown-item nav_option" style="background-color: #FFD0A8;" href="{{ path("contact") }}">Nous contacter</a>
+                            <a class="dropdown-item nav_option" style="background-color: #FFD0A8;" href="{{ path("suggestion") }}">Suggestion d'achat</a>
+                        </div>
+                    </li>
+
+           
+
+                    <li class="nav-item">
+                        <a class="nav-link nav_option" href="{{ path("actualite") }}">Actualité</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav_option dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nos selections</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #FFD0A8;">
+                            <a class="dropdown-item nav_option" style="background-color: #FFD0A8;" href="{{ path("nouveautes") }}">Nouveautés</a>
+                            <a class="dropdown-item nav_option" style="background-color: #FFD0A8;" href="{{ path("selectionadulte") }}">Adulte</a>
+                            <a class="dropdown-item nav_option" style="background-color: #FFD0A8;" href="{{ path("selectionjeunesse") }}">Jeunesse</a>
+   
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link nav_option" href="{{ path("autoformation") }}">Autoformation</a>
+                    </li>
+
+  
+                
+            
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+ 
+</header>

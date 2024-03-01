@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Sélection Adulte{% endblock %}
+
+{% block body %}
+   
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-cottonbro-adulte-livre.jpg")) }}')">
+        <div class="container">
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Selection adulte</h1>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="container">
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">Livre</h2>
+
+
+        <p class="mt-4 mb-4 text-justify">Nos bibliothècaires vous font partager leur coups de coeurs littéraires. Bonne lecture !</p>
+
+        <div class="flex justify-content-center  flex-wrap justify-content-center">
+            {% for listeLivreAdulte in selectionLivreAdulte %}
+                <div class="card mx-3 my-3" style="width: 12rem;">
+
+                    <a href="{{ path('detail_book', {"slug": listeLivreAdulte.slug}) }}">
+                    
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img id="imageLivre" src ="{{ asset('bookcover/' ~ listeLivreAdulte.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ listeLivreAdulte.titre }}">
+                            </div>
+                        </div>
+                    </a>
+                
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">{{ knp_pagination_render(selectionLivreAdulte) }}</div>
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">BD, comics et manga</h2>
+
+        <p class="mt-4 mb-4 text-justify">Mangas, bandes dessinées, comics : nous souhaitons vous faire partager nos coups de coeurs.</p>
+
+        <div class ="flex justify-content-center  flex-wrap justify-content-center">
+            {% for listeBdAdulte in selectionBdAdulte %}
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    
+                    <a href="{{ path('detail_book', {"slug": listeBdAdulte.slug}) }}" >
+                    
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img id="imageLivre" src ="{{ asset('bookcover/' ~ listeBdAdulte.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ listeBdAdulte.titre }}">
+                            </div>
+                        </div>
+                    </a>
+            
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">{{ knp_pagination_render(selectionBdAdulte) }}</div>
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">Documentaire, beau-livre</h2>
+
+        <p class="mt-4 mb-4 text-justify">Découvrez notre selection d'ouvrages documentaire et  beaux-livres.</p>
+
+        <div class ="flex justify-content-center  flex-wrap justify-content-center">
+            {% for listeDocAdulte in selectionDocAdulte %}
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    
+                    <a href="{{ path('detail_book', {"slug": listeDocAdulte.slug}) }}" >
+                    
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img id="imageLivre" src ="{{ asset('bookcover/' ~ listeDocAdulte.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ listeDocAdulte.titre }}">
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">{{ knp_pagination_render(selectionDocAdulte) }}</div>
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">Emploi/Formation</h2>
+
+        <p class="mt-4 mb-4 text-justify">Voici notre selection d'ouvrages de références constamment mise à jour afin de vous aider à préparer votre formation ou vous aider à être à l'écoute du marché de l'emploi.</p>
+
+        <div class ="flex justify-content-center  flex-wrap justify-content-center">
+            {% for listeFormationAdulte in selectionFormationAdulte %}
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    
+                    <a href="{{ path('detail_book', {"slug": listeFormationAdulte.slug}) }}" >
+                    
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img id="imageLivre" src ="{{ asset('bookcover/' ~ listeFormationAdulte.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ listeFormationAdulte.titre }}">
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">{{ knp_pagination_render(selectionFormationAdulte) }}</div>
+
+
+        <div class="alignement">
+            <a class="btn show_btn" href="{{ path('accueil') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+        </div>
+
+
+    </div>
+
+{% endblock %}

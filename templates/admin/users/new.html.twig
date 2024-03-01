@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Ajout utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container">
+        
+            
+        <div class="col-md-8 offset-md-2">
+    
+            <h1 class="text-center mt-3 mb-3">Création d'un nouveau utilisateur</h1>
+
+            <p class="text-justify"><span class="font-weight-bold">Attention :</span> merci de noter que  la catégorie de l'utilisateur est automatiquement paramètré en tant qu'utilisateurs. Les CGU doivent être acceptés pour pouvoir procéder à l'enregistrement.</p>
+            <p class="text-justify">Si vous souhaitez ajouter un utilisateur en tant que personnel de la bibliothèque, merci de contacter l'administrateur du site par email.</p>
+
+            <div class="card bg-light">
+                <div class="card-body">
+
+                   
+                    {{ form_start(form) }}
+                            
+
+                        <div class="col text-uppercase font-weight-bold">
+                            {{ form_row(form.firstname) }}
+                        </div>
+                        <div class="col text-uppercase font-weight-bold">
+                            {{ form_row(form.lastname) }}
+                        </div>
+                        <div class="col text-uppercase font-weight-bold">
+                            {{ form_row(form.email) }}
+                        </div>
+
+        
+
+                        <div class="col text-uppercase font-weight-bold">
+                            {{ form_row(form.plainPassword) }}
+                        </div>
+
+                        <div>
+                            {{ form_row(form.agreeTerms) }}
+                        </div>
+
+                                    
+                        <div class="text-center">
+                            <button class="btn create_btn mb-2" type="submit">Valider<i class="fa fa-check ml-3"></i></button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+            <div class="alignement"> 
+                <a class="btn show_btn" href="{{ path('admin') }}"><i class="fa fa-arrow-left mr-3" aria-hidden="true"></i>Retour vers mon profil</a>
+                <a class="btn save_btn" href="{{ path('users_index') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à la liste</a>
+            </div>
+
+           
+
+          
+
+        </div>
+      
+    </div>
+{% endblock %}

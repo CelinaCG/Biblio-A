@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Autoformation{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-cottonbro-autoformation.jpg")) }}')">
+        <div class="container">
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Autoformation</h1>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="container">
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">Selections d'ouvrages pour le soutien scolaire et la formation adulte</h2>
+
+        <p class="mt-4 text-justify">Vous trouverez une selection d'ouvrages dans la rubrique "Nos selections" puis l'onglet "adulte" pour les ouvrages d'auto-formation ou "jeunesse" pour les livres scolaires.</p>
+
+        <p class="text-justify">Retrouvez nos dernières acquisitions dans la rubrique <a href="{{ path('nouveautes') }}">"Nouveautés"</a>.</p>
+
+        <p class="mb-5 text-justify">Nos bibliothècaires sont également à votre disposition si vous avez besoin d'aide ou de conseils personnalisés.</p>
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">Plateformes d'apprentissage</h2>
+
+
+        <p class="mt-4 mb-4 text-justify">La bibliothèque met en place des partenariats avec des plate-formes d'apprentissage afin de vous permettre d'approfondir vos connaissances à n'importe quel âge.</p>
+
+        <div class="text-center">
+        <a href="https://biblio.toutapprendre.com/newbiblio/index.aspx?nolog=1&delog=1"><img class="img-fluid w-75" src="{{ absolute_url(asset("images/logo-toutapprendre-V.png")) }}" alt="logo site toutapprendre.com"></a>
+        </div>
+
+        <p class="text-justify mb-4">Cette plateforme propose de multiples ressources de formation, accessibles de chez vous ou à la bibliothèque. La création du compte se fait auprès des bibliothécaires.</p>
+
+        <div class="text-center">
+        <a href="https://eureka.valdemarne.fr/"><img class="img-fluid" src="{{ absolute_url(asset("images/BoutonEureka.jpg")) }}" alt="logo site eureka.valdemarne.fr"></a>
+        </div>
+
+        <p class="text-justify mt-4 mb-4">La plateforme proposée par le Conseil départemental du Val-de-Marne offre plus de 2600 programmes d'autoformation dans divers domaines.</p>
+
+        <p class="text-justify">Ce service est gratuit et ouvert aux abonnés des médiathèques du Val-de-Marne, ayant une carte de prêt en cours de validité. Il est accessible depuis votre bibliothèque, votre domicile ou tout autre appareil connecté à cette adresse : <a href="http://eureka.valdemarne.fr/">eureka.valdemarne.fr</a> après avoir rempli le formulaire de création de compte.</p>
+
+
+        <div class="alignement">
+            <a class="btn show_btn mt-4" href="{{ path('accueil') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+        </div>
+
+
+
+       
+      
+
+    </div>
+
+{% endblock %}

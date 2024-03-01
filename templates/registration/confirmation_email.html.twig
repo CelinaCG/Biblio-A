@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<html lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>Bienvenue à la bibliothèque Atlantide !</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #CBB0DB;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .container {
+                background-color: #fefefe;
+                width: 580px;
+                margin: 0 auto;
+            }
+
+            .block {
+                margin: 0;
+                padding: 10px 20px 20px 20px;
+                text-align: justify;
+            }
+
+            h1 {
+                background-color: #81519D;
+                color: #ffffff;
+                padding: 30px 0 50px 0;
+                font-weight: normal;
+                font-family: 'Lora', sans-serif;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .flex {
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            }
+        </style>
+                
+        
+        {# Police Montserrat #}
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+            
+    
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div class="flex">
+                <div>
+                    <img src="http://127.0.0.1:8000/images/logo-biblio-atlantide2.png" class="logo" alt="Logo de la bibliothèque Atlantide">
+                </div>
+            </div>
+
+            <div class="content">
+                <h1 class="text-center">Bibliothèque Atlantide - Vérification de votre email</h1>
+
+                <h2 class="block">Bonjour,</h2>
+
+                <p class="block">Notre équipe vous souhaite la bienvenue à la <strong>bibliothèque Atlantide</strong></p>
+
+                <p class="block">Merci de confirmer votre adresse email en cliquant sur le lien suivant : <br><br>
+                <a href="{{ signedUrl }}">Confirmer mon email</a>.
+                Ce lien va expirer dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.</p>
+
+                <p class="block">Nous vous remercions de votre intéret et vous recommandons de garder ce mail dans vos archives.</p>
+
+                <p class="block">Nous vous souhaitons une bonne visite sur notre site.</p>
+
+                <p class="block">Cordialement,</p>
+
+                <p class="block">L'équipe de la bibliothèque Atlantide</p>
+            </div>
+            
+        </div>
+
+
+    </body>
+</html>

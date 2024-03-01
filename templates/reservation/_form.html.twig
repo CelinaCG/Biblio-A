@@ -1,0 +1,21 @@
+<p>Pour transmettre votre demande de réservation à nos bibliothècaires, merci de bien vouloir confirmer en validant votre demande.</p>
+
+{{ form_start(form) }}
+    {# {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button> #}
+
+    <div class="row my-5">
+        <div class="col-md-5 col-sm-12">
+        {{ form_row(form.dateDebut, {
+            label: 'Date de début de la réservation'
+        }) }}
+        </div>
+        <div class="col-md-5 col-sm-12">
+        {{ form_row(form.dateFin, {
+            label: 'Date de fin de la réservation'
+        }) }}
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Valider</button>
+    
+{{ form_end(form) }}

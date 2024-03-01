@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche avancée{% endblock %}
+
+{% block body %}
+
+
+
+</div>
+    <div class="row justify-content-around pt-5">
+        <h1 class="titre mt-5 py-1">Recherche avancée</h1>
+    </div>
+
+    {# formulaire de recherche #}
+
+    <div class="form-group">
+        {% form_theme searchForm 'bootstrap_4_layout.html.twig' %}
+        {{ form_start(searchForm) }}
+        {# <div class="row my-4 justify-content-center"> #}
+            <div class="row my-3 d-flex justify-content-center">
+                {# <div class="offset-md-1 col-md-6 col-sm-12"> #}
+                    <div class="col-md-5 col-sm-12">
+                        {{ form_row(searchForm.titre, {'label': "Titre du livre", 'attr': {'placeholder': '...'}}) }}
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        {{ form_row(searchForm.auteur, {'label': "Auteur(e)", 'attr': {'placeholder': '...'}}) }}
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        {{ form_row(searchForm.coauteur, {'label': "Co-auteur(e)", 'attr': {'placeholder': '...'}}) }}
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        {{ form_row(searchForm.editeur, {'label': "Editeur", 'attr': {'placeholder': '...'}}) }}
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        {{ form_row(searchForm.annee, {'label': "Année de parution", 'attr': {'placeholder': '...'}}) }}
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        {{ form_row(searchForm.langue, {'label': "Langue", 'attr': {'placeholder': '...'}}) }}
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        {{ form_row(searchForm.typeDocument, {'label': "Type de document", 'attr': {'placeholder': '...'}}) }}
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        {{ form_row(searchForm.categorie, {'label': "Catégorie (sujet)", 'attr': {'placeholder': '...'}}) }}
+                    </div>
+                    {# <button class="offset-md-3 add btn btn-outline-info my-2 justify-content-around">Rechercher</button> #}
+                {# </div> #}
+            </div>
+            <div class="row justify-content-center">
+                <button class="offset-md-3 add btn btn-outline-info my-2 justify-content-around">Rechercher</button>
+            </div>
+        {{ form_end(searchForm) }}
+    </div>
+
+    {# Boucle de recherche des ouvrages #}
+    
+    <div class ="row justify-content-around">
+        {% for book in books %}
+        <div class="card my-3 text-center" style="width: 15rem;">
+          
+            <img class="imageLivre" src="{{ asset('bookcover/' ~ book.imageLivre) }}" alt="{{'Image' ~ book.titre }}">
+    
+            <div class="card-body">
+                <h5 class="card-title titreLivre">{{ book.titre }}</h5>
+                <hr>
+                <p class="card-text">{{ book.auteur}}</p>
+                <p class="card-text">Editeur: {{ book.editeur }}</p>
+                <p class="card-text">{{ book.annee }}</p>
+                <a href="{{ path('detail_book', {'slug': book.slug}) }}" class="btn btn-primary">Voir le détail</a>
+            </div>
+        </div>
+        
+        {% endfor %}
+
+    
+    </div>
+
+    <div class="pagination">
+        {{ knp_pagination_render(books) }}
+    </div>
+{% endblock %}

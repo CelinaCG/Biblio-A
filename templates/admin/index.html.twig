@@ -1,0 +1,236 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Espace bibliothècaire{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1>Espace bibliothécaire</h1>
+
+        <p class="mt-5 font-weight-bold">Bonjour {{ app.user.firstname }} et bienvenue ! </p>
+
+        <p>Cet espace dédié vous permet de visualiser et de gérer notre offre d'ouvrages ainsi que nos adhérents et les emprunts en cours.</p>  <br/>
+ 
+
+        <h2 class="pb-2 color_border" style="color: #7C2BA8;">MENU</h2>
+        
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="col d-flex align-items-start">
+                <div class="icon-square text-dark flex-shrink-0 me-3">
+                    <i class="fa fa-user-circle mr-3" style="font-size:48px; color: #088383;"></i>
+            
+                </div>
+                <div>
+                    <h3>Vos coordonnées</h3>
+                    
+                    <p><span class="font-weight-bold">Nom: </span> {{ app.user.lastname }}</p>
+                    <p><span class="font-weight-bold">Prénom: </span> {{ app.user.firstname }}</p>
+                    <p><span class="font-weight-bold">Email: </span> {{ app.user.email }}</p>
+                    
+                    <div>
+                        <a class="btn create_btn" href=" {{ path('admin_edit', {id: app.user.id}) }}">Modifier<i class="fa fa-pencil ml-2"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="d-sm-none">
+
+            <div class="col d-flex align-items-start">
+                <div class="icon-square text-dark flex-shrink-0 me-3">
+                    <i class="fa fa-list mr-3" style="font-size:48px; color: #088383;"></i>
+                </div>
+                <div>
+                    <h3>Liste des usagers</h3>
+                    <p>Espace de visualisation et de gestion des informations des adhérents de la bibliothèque.</p>
+                    <a class="btn create_btn" href="{{ path('users_index') }}">Accès à la liste<i class="fa fa-arrow-right ml-2"></i></a> 
+                </div>
+            </div>
+
+            <hr class="d-sm-none">
+
+            <div class="col d-flex align-items-start">
+                <div class="icon-square text-dark flex-shrink-0 me-3">
+                    <i class="fa fa-book mr-3" style="font-size:48px; color: #088383;"></i>
+            
+                </div>
+                <div>
+                    <h3>Catalogue et selection</h3>
+                    <p>Espace de consultation et de contribution au catalogue de la bibliothèque.</p>
+                    <a class="btn create_btn" href="{{ path('book_index') }}">Accès catalogue<i class="fa fa-arrow-right ml-2"></i></a> 
+                </div>
+            </div>
+   
+        
+        </div>
+
+
+        <h2 class="pb-2 color_border titre_margin">Liste des emprunts</h2>
+
+        <p class="mt-5">Vous trouverez ci-dessous la liste des emprunts des adhérents ainsi que leur statut. </p>
+        <p>La validation de chaque emprunt est à faire par vos soins.</p>
+        <p class="font-weight-bold">Rappel : la durée d'emprunt est de 4 semaines.</p>
+
+
+
+        <table class="table" style="background-color: #EFEFEF;" data-toggle="table" data-search="true" data-show-columns="true" data-pagination="true">
+            <thead style="background-color: #7C2BA8;">
+                <tr class="text-light">
+                    <th>ID emprunt</th>
+                    <th data-sortable="true">Nom</th>
+                    <th data-sortable="true">Prénom</th>
+                    <th data-sortable="true">Titre</th>
+                    <th>ISBN</th>
+                    <th data-sortable="true">Fin d'emprunt</th>
+                    <th>Actions</th>
+                    <th>Validation</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for emprunt in emprunts %}
+                <tr class="font-weight-bold">
+                    <td>{{ emprunt.id }}</td>
+                    <td>{{ emprunt.user.lastname }}</td>
+                    <td>{{ emprunt.user.firstname }}</td>
+                    <td>{{ emprunt.book.titre }}</td>
+                    <td>{{ emprunt.book.isbn}}</td>
+                    <td>{{ emprunt.dateFin ? emprunt.dateFin|date('d-m-Y') : '' }}</td>
+                    <td>{% if emprunt.validation == false %}
+                        <a class = "btn btn-sm create_btn margin" href = "{{ path('emprunt_validation', {'id': emprunt.id}) }}">Valider</a>
+                        {% endif %}
+                        {% if emprunt.validation == true %}
+                            <a class="btn btn-sm show_btn margin" href="{{ path('emprunt_validation', {'id': emprunt.id}) }}">Annuler</a>
+                        {% endif %}
+                        {{ include('emprunt/_delete_form.html.twig') }}
+                    </td>
+                    <td>{% if emprunt.validation == true %} OUI {% else %} NON {% endif %}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Pas d'emprunts trouvés</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+       
+
+        <h2 class="pb-2 color_border titre_margin">Suggestions d'achats</h2>
+
+        <p class="mt-5">Voici la liste des suggestions d'achats de nos usagers.</p>
+        <p>Lors de la prise de décision (validation ou refus), il faut notifier l'adhérent(e) par email.</p>
+
+        <p>Faites une nouvelle suggestion en accèdant au formulaire ci-dessous. Toutes les rubriques doivent être complétées.</p>
+        
+        <div class="text-center">
+            <a class="btn sm-btn create_btn mb-4" href="{{ path('suggestion_new') }}">Nouvelle suggestion<i class="fa fa-pencil ml-2"></i> </a>
+        </div>
+        
+
+        <table class="table" style="background-color: #EFEFEF;" data-toggle="table" data-search="true" data-show-columns="true" data-pagination="true" data-buttons-align="right">
+            <thead style="background-color: #7C2BA8;">
+                <tr class="text-light">
+                    <th>Numéro</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Editeur</th>
+                    <th>Secteur</th>
+                    <th>Date de création</th>
+                    <th>N° usager</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Actions</th>
+                    <th>Réponse</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+            {% for suggestion in suggestions %}
+                <tr class= "font-weight-bold">
+                    <td>{{ suggestion.id }}</td>
+                    <td>{{ suggestion.titre }}</td>
+                    <td>{{ suggestion.auteur }}</td>
+                    <td>{{ suggestion.editeur }}</td>
+                    <td>{{ suggestion.secteur }}</td>
+                    <td>{{ suggestion.createdAt ? suggestion.createdAt|date('d-m-Y') : '' }}</td>
+                    <td>{{ suggestion.user.id}}</td>
+                    <td>{{ suggestion.user.lastname }}</td>
+                    <td>{{ suggestion.user.firstname }}</td>
+                    <td>
+                        {% if suggestion.validation == false %}
+                            <a class = "btn btn-sm create_btn margin" href = "{{ path('suggestion_validation', {'id': suggestion.id}) }}">Accepter</a>
+                        {% endif %}
+                        {% if suggestion.validation == true %}
+                            <a class="btn btn-sm show_btn margin" href="{{ path('suggestion_validation', {'id': suggestion.id}) }}">Annuler</a>
+                        {% endif %}
+                        {{ include('suggestion/_delete_form.html.twig') }}
+                    </td>
+                    <td>{% if suggestion.validation == true %} ACCEPTE {% else %} REFUSE {% endif %}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Pas d'enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <h2 class="pb-2 color_border titre_margin">Liste des actualités</h2>
+
+        <p class="mt-5">Voici la liste des dernières actualités de la bibliothèque. Vous pouvez contribuer en ajoutant une nouvelle entrée et vous pouvez également modifier et supprimer des articles.</p>
+        <p class="font-weight-bold">Attention : toute suppression est définitive.</p>
+
+            <div class="d-flex justify-content-center">
+                <a class="btn create_btn" href="{{ path('event_index') }}">Accès administration actualités<i class="fa fa-arrow-right ml-2"></i></a>  
+            </div>
+        <table class="table" style="background-color: #EFEFEF;" data-toggle="table" data-search="true" data-show-columns="true" data-pagination="true" data-buttons-align="right">
+            <thead style="background-color: #7C2BA8;">
+                <tr class="text-light">
+                    <th data-sortable="true">N° d'actu</th>
+                    <th>Image</th>
+                    <th data-sortable="true">Titre</th>
+                    <th data-sortable="true">Date de création</th>
+                    <th>Date d'édition</th>
+                    <th>Contenu</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr class="font-weight-bold">
+                    <td>{{ event.id }}</td>
+                    <td> <img class="miniImage" src= "{{ absolute_url(asset("event/" ~ event.imageEvent)) }}" alt="{{ 'image de l\'actualité' ~ event.titre }}"></td>
+                    <td>{{ event.titre }}</td>
+                    <td>{{ event.createdAt ? event.createdAt|date('d-m-Y') : '' }}</td>
+                    <td>{{ event.updatedAt ? event.updatedAt|date('d-m-Y') : '' }}</td>
+                    <td>{{ event.contenu|length > 50 ? event.contenu|slice(0, 50) ~ "..." : event.contenu }}</td>
+                    <td>
+                        <a class="btn btn-sm show_btn margin" href="{{ path('event_show', {'id': event.id}) }}">Détail</a>
+                        <a class="btn btn-sm edit_btn margin" href="{{ path('event_edit', {'id': event.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <h2 class="pb-2 color_border titre_margin">Outil d'analyse d'audience Matomo</h2>
+
+        <p class="mt-5">Vous trouverez ci-dessous le lien d'accès au compte Matomo de la bibliothèque accessible par votre nom de compte et votre mot de passe.</p>
+
+        <a href="https://matomo.bibliotheque-atlantide.fr/">Compte Matomo</a>
+
+        <div class="alignement">
+
+            <a class="btn show_btn" href="{{ path("accueil") }}" role="button"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a></div>
+        </div>
+
+  
+
+       
+
+        
+    </div>
+{% endblock %}

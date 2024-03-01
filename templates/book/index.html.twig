@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Catalogue du fonds{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Catalogue et selection des ouvrages</h1>
+
+        <p>Voici le panneau d'administration du catalogue de notre fonds. Vous pouvez créer, éditer et supprimer les documents si nécessaire.</p>
+
+        <p>Vous pouvez aussi choisir les titres à mettre en avant dans les selection des bibliothécaires.</p>
+
+        <p>Pour faciliter la navigation, vous pouvez utiliser le bouton de la flèche située à gauche pour filtrer les colonnes que vous souhaitez visualiser.</p>
+
+        <div class="d-flex justify-content-center">
+            <a class="btn create_btn" href="{{ path('book_new') }}">Nouvelle entrée<i class="fa fa-pencil ml-2"></i></a>
+        </div>
+
+        <table class="table" style="background-color: #EFEFEF;" data-toggle="table" data-search="true" data-show-columns="true" data-pagination="true" data-buttons-align="left">
+            <thead style="background-color: #7C2BA8;">
+                <tr class="text-light">
+                    <th></th>
+                    <th>ISBN</th>
+                    <th>EAN</th>
+                    <th>Langue</th>
+                    <th data-sortable="true">Titre</th>
+                    <th data-sortable="true">Editeur</th>
+                    <th data-sortable="true">Année</th>
+                    <th data-sortable="true">Auteur</th>
+                    <th data-sortable="true">Co-auteur</th>
+                    <th>Cote</th>
+                    <th data-sortable="true">Document</th>
+                    <th data-sortable="true">Catégorie</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>   
+                    <td> <img class="miniImage" src= "{{ absolute_url(asset('bookcover/' ~ book.imageLivre)) }}" alt="{{ 'Image du document' ~ book.titre }}"> </td>
+                    <td>{{ book.isbn }}</td>
+                    <td> {% if book.ean|length > 5 %}
+                    {{ book.ean|slice (0, 5) ~ "..." }}
+                    {% else %} {{ book.ean }}
+                    {% endif %}</td>
+                    <td>{{ book.langue }}</td>
+                    <td> {% if book.titre|length > 20 %}
+                    {{book.titre|slice (0, 20) ~ "..."}}
+                    {% else %} {{ book.titre }}
+                    {% endif %}</td>
+                    <td>{{ book.editeur }}</td>
+                    <td>{{ book.annee }}</td>
+                    <td>{{ book.auteur }}</td>
+                    <td>{{ book.coauteur }}</td>
+                    <td>{{ book.cote }}</td>
+                    <td>{{ book.typeDocument }}</td>
+                    <td>{{ book.categorie }}</td>
+                    <td>
+                        <a class="btn btn-sm show_btn margin" href="{{ path('book_show', {'slug': book.slug}) }}">Détail</a>
+                        <a class="btn btn-sm edit_btn margin" href="{{ path('book_edit', {'id': book.id}) }}">Modifier</a>
+                        {# Mettre en favori #}
+                        {% if book.favori == false %} 
+                        <a class="btn btn-sm favori_btn" href="{{ path('book_favori', {'id': book.id}) }}">Mettre en favori</a>
+                        {% endif %}
+                        {% if book.favori == true %}
+                            <a class="btn btn-sm annul_favori_btn" href="{{ path('book_favori', {'id': book.id}) }}">Annuler favori</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="16">Pas d'enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="alignement">
+            <a class="btn show_btn" href="{{ path('admin') }}"><i class="fa fa-arrow-left mr-3"></i>Retour au profil</a>
+        </div>
+    </div>
+{% endblock %}

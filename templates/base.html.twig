@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {# Tarte au citron #}
+        <script src="{{ asset('/tarteaucitron/tarteaucitron.js')}}"></script>
+
+        <script type="text/javascript">
+            tarteaucitron.init({
+                "privacyUrl": "{{ path('politique_confidentialite')}}", /* Privacy policy url */
+
+                "hashtag": "#tarteaucitron", /* Open the panel with this hashtag */
+                "cookieName": "tarteaucitron", /* Cookie name */
+            
+                "orientation": "middle", /* Banner position (top - bottom) */
+            
+                "groupServices": false, /* Group services by category */
+                                
+                "showAlertSmall": false, /* Show the small banner on bottom right */
+                "cookieslist": false, /* Show the cookie list */
+                                
+                "closePopup": false, /* Show a close X on the banner */
+
+                "showIcon": true, /* Show cookie icon to manage cookies */
+                //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
+                "iconPosition": "BottomLeft", /* BottomRight, BottomLeft, TopRight and TopLeft */
+
+                "adblocker": false, /* Show a Warning if an adblocker is detected */
+                                
+                "DenyAllCta" : true, /* Show the deny all button */
+                "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
+                "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
+                                
+                "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
+
+                "removeCredit": false, /* Remove credit link */
+                "moreInfoLink": true, /* Show more info link */
+
+                "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+                "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
+
+                //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
+                                
+                "readmoreLink": "", /* Change the default readmore link */
+
+                "mandatory": true, /* Show a message about mandatory cookies */
+            });
+
+            
+        </script>
+
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" 
+            content="Site internet de la bibliothèque municipale Atlantide.
+            Nouveautés, selections, informations pratiques, actualité, recherche documentaire, emprunt en ligne, autoformation." />
+        
+        <title>{% block title %}Bibliothèque Atlantide : Nouveautés, selections, emprunt en ligne{% endblock %}</title>
+        <link rel="icon" type="image/png" href="{{asset('/images/favicon-bibliotheque-atlantide.png') }}">
+
+        {% block stylesheets %}
+            {# Bootstrap CSS #}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+            {# Mon CSS #}
+            <link rel="stylesheet" href="{{ asset('CSS/style.css') }}">
+            
+            {# Bootstrap Table CSS #}
+            <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+            
+            {# Font Awesome 4 #}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            {# Montserrat font #}
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+            {# Lora font #}
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
+
+        {% endblock %}
+
+        {# Flash messages #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+         {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% block javascripts %}
+            {# Javascript #}
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+            {# Bootstrap Table JS #}
+            <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+            <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/locale/bootstrap-table-fr-FR.min.js"></script>
+
+            {# upload fichier #}
+            <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    
+
+            {# more precise and takes into account multiple files #}
+            <script>
+                $(document).on('change', '.custom-file-input', function () {
+                let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
+                $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
+                });
+            </script>
+
+            {# Captcha #}
+            <script>
+                $(function(){
+                $("a[title ~= 'BotDetect']").removeAttr("style");
+                $("a[title ~= 'BotDetect']").removeAttr("href");
+                $("a[title ~= 'BotDetect']").css('visibility', 'hidden');
+                });
+            </script>
+            
+            <!-- Matomo -->
+            <script>
+            var _paq = window._paq = window._paq || [];
+            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+                var u="//matomo.bibliotheque-atlantide.fr/";
+                _paq.push(['setTrackerUrl', u+'matomo.php']);
+                _paq.push(['setSiteId', '1']);
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+            })();
+            </script>
+       
+            <!-- End Matomo Code -->
+
+           
+
+
+
+          
+
+
+
+        {% endblock %}
+    </head>
+    <body>
+        {% block navbar %}
+            {% include 'navbar.html.twig' %}
+        {% endblock %} 
+
+     
+        {% block body %}
+
+ 
+        
+        {% endblock %}
+
+      
+        {# Bouton haut de page #}
+        <button onclick="topFunction()" id="TopBtn" title="Haut de page"><i class="fa fa-arrow-circle-up"  aria-hidden="true"></i></button>
+        <script src="{{ asset('JS/top_bouton.js') }}"></script>
+    
+        {% block footer %}
+            {% include 'footer.html.twig' %}
+        {% endblock %} 
+        
+    </body>
+</html>

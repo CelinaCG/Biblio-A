@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Liste des usagers{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Liste des usagers</h1>
+
+        
+        <p>Voici la liste des adhérents de la bibliothèque. <span class="font-weight-bold">ATTENTION : toute suppression d'un utilisateur est définitive </span> donc il convient de vérifier si l'adhérent n'a pas d'emprunts en cours. Vous pouvez voir la liste des emprunts sur votre profil.</p>
+
+        <p>Concernant les comptes non validés, il convient d'envoyer un email à l'utilisateur lui informant de la suppression prochaine en absence de réponse sous un mois.</p>
+
+        <p class="mb-5">Vous pouvez contacter les adhérents par email pour tout contact.</p>
+
+
+        <div class="text-center mb-3">
+            <a class="btn create_btn" href="{{ path('users_new') }}">Nouveau utilisateur<i class="fa fa-pencil ml-2"></i></a>
+        </div>
+        
+        <table class="table" style="background-color: #EFEFEF;" data-toggle="table" data-search="true" data-show-columns="true" data-pagination="true">
+            <thead style="background-color: #7C2BA8;">
+                <tr class="text-light">
+                    <th><i class="fa fa-user"></i> Identifiant</th>
+                    <th data-sortable="true">Nom</th>
+                    <th data-sortable="true">Prénom</th>
+                    <th>Email</th>
+                    <th data-sortable="true">Catégorie</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_USER" %}
+                                Utilisateur
+                            {% elseif role == "ROLE_ADMIN" %}
+                                Bibliothècaire
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if user.isverified == true %}
+                        Vérifié
+                        {% elseif user.isverified == false %}
+                        Non vérifié
+                        {% endif %}
+                    <td>
+    
+                        <a class="btn btn-sm edit_btn mb-3" href="{{ path('users_edit', {'id': user.id}) }}"><i class="fa fa-edit mr-2"></i>Editer</a>
+                   
+                        {{ include('admin/users/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Aucun utilisateur enregistré</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="alignement"> 
+            <a class="btn show_btn" href="{{ path('admin') }}"><i class="fa fa-arrow-left mr-3" aria-hidden="true"></i>Retour vers le profil</a>
+        </div>
+    </div>
+{% endblock %}

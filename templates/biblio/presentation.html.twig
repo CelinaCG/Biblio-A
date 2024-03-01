@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Présentation{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-cottonbro-hall-bibliotheque.jpg")) }}')">
+        <div class="container">
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Présentation</h1>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <h1>Bibliothèque Atlantide</h1>
+
+        <h4 class="mb-4">Adresse</h4>
+        
+        <p>Bibliothèque Atlantide</p>
+        <p>36 avenue Maximilien Robespierre</p> 
+        <p>94400 Vitry-sur-Seine</p>
+
+    
+        
+        <div class="text-center">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2628.5888150905876!2d2.385948215671945!3d48.789739779280836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67393f61d6ad7%3A0x2d8ac3a8f482c9cb!2s36%20Av.%20Maximilien%20Robespierre%2C%2094400%20Vitry-sur-Seine!5e0!3m2!1sfr!2sfr!4v1649859655798!5m2!1sfr!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <h2 class="mt-4">Un lieu ouvert à tous</h2>
+
+        <p  class="mt-4 text-justify">La bibliothèque dispose de plus de 400 000 références.</p>
+        <p class="mb-5 text-justify"> C'est un service public municipal ouvert à tous. Elle propose des espaces, des collections, et des services afin de contribuer à la culture, la formation, l’information et aux loisirs de la population atlante.</p>
+        
+        <h2>Une équipe à votre service</h2>
+        <p class="mt-4 text-justify">32 agents municipaux travaillent à la bibliothèque.  </p>
+        <p class="text-justify">En dehors de leur présence dans les espaces publics, les bibliothécaires gèrent  la sélection, la réception,  l’équipement des documents, mais aussi la valorisation et la médiation des collections, la logistique du bâtiment... </p>
+        <p class="text-justify">Chacun a reçu une formation spécialisée ou possède une qualification spécifique dans le domaine du livre, du cinéma, de la musique et du numérique.</p>
+
+        <p class="mb-5 text-justify">Si vous souhaitez nous contacter, vous pouvez nous <a href="{{ path("contact") }}" class="navbar_1">envoyer un message.</a></p>
+
+
+        <div class="alignement">
+            <a class="btn show_btn" href="{{ path('accueil') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+        </div>
+
+
+    </div>
+{% endblock %}

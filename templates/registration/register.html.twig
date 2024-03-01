@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Inscription{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    
+    
+    <div class="container">
+        <div class="mt-5">
+            <div class="row">
+               
+                <div class="col-md-6 col-lg-6 col-xl-6 m-auto justify-content-center">
+                
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h2 class="text-center mb-3">Inscription</h2>
+
+                            {{ form_start(registrationForm) }}
+                                {{ form_row(registrationForm.lastname, {
+                                    label: "Nom"
+                                }) }}
+                                {{ form_row(registrationForm.firstname, {
+                                    label: "Prénom"
+                                }) }}
+                                {{ form_row(registrationForm.email) }}
+                                {{ form_row(registrationForm.plainPassword, {
+                                    label: 'Mot de passe'
+                                }) }}
+
+                                <div class="text-justify">
+                                En vous inscrivant à la bibliothèque, vous nous engagez à prendre connaissance de nos <a href="{{ path('cgu') }}"><strong> Conditions Générales d'Utilisation (CGU) </strong></a> concernant l'utilisation de vos données personnelles.  En cochant la case ci-dessous, vous reconnaissez les avoir lu, compris et accepté.
+                                </div> <br/>
+                                {{ form_row(registrationForm.agreeTerms) }}
+
+                                
+                                {{ form_row(registrationForm.captchaCode) }}
+
+                                {% set formErrors = registrationForm.vars.errors.form.getErrors(true) %}
+
+                                {% if formErrors|length %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for error in formErrors %}
+                                            <li>{{ error.message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                                
+                                <div class="text-center">
+                                    <button type="submit" class="btn create_btn">S'inscrire<i class="fa fa-check ml-2"></i></button>
+                                </div>
+                            {{ form_end(registrationForm) }}
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

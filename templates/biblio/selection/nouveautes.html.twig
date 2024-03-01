@@ -1,0 +1,229 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliothèque Atlantide - Nouveautés{% endblock %}
+
+{% block body %}
+   
+    <div class="jumbotron jumbotron-fluid" style="background-image:url('{{ absolute_url(asset("images/pexels-cottonbro-nouveaute.jpg")) }}')">
+        <div class="container">
+            <div class="card d-inline-flex card_opacity">
+                <div class="card-body">
+                    <h1 class="display-4">Nouveautés</h1>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="container">
+
+        <h2 class="pb-2 mb-5 color_border" style="color: #7C2BA8;">Nouveautés adulte</h2>
+
+        <h4>Romans</h4>
+
+        <div class="flex justify-content-center  flex-wrap justify-content-center">
+            
+            {% for nouveauteLivreAdulte in nouveauteLivreAdulte %}
+
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    <a href="{{ path('detail_book', {'slug': nouveauteLivreAdulte.slug}) }}">
+
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img src ="{{ asset('bookcover/' ~ nouveauteLivreAdulte.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ nouveauteLivreAdulte.titre }}">
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+
+            {% endfor %}  
+
+        </div>   
+
+        <div class="mt-4">{{ knp_pagination_render(nouveauteLivreAdulte) }}</div>  
+
+       
+        <h4>Bande-dessiné/Manga</h4>
+   
+
+        <div class="flex justify-content-center  flex-wrap justify-content-center">
+            
+            {% for nouveauteBdAdulte in nouveauteBdAdulte %}
+
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    <a href="{{ path('detail_book', {'slug': nouveauteBdAdulte.slug}) }}">
+
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img src ="{{ asset('bookcover/' ~ nouveauteBdAdulte.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ nouveauteBdAdulte.titre }}">
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+
+            {% endfor %}  
+
+        </div>   
+
+        <div class="mt-4">{{ knp_pagination_render(nouveauteBdAdulte) }}</div> 
+
+        <h4>Documentaire</h4>
+
+        <div class="flex justify-content-center  flex-wrap justify-content-center">
+            
+            {% for nouveauteDocAdulte in nouveauteDocAdulte %}
+
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    <a href="{{ path('detail_book', {'slug': nouveauteDocAdulte.slug}) }}">
+
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img src ="{{ asset('bookcover/' ~ nouveauteDocAdulte.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ nouveauteDocAdulte.titre }}">
+                            </div>
+                        </div>
+
+                    </a>    
+                </div>
+
+            {% endfor %}  
+
+        </div>   
+
+        <div class="mt-4">{{ knp_pagination_render(nouveauteDocAdulte) }}</div> 
+
+        <h4>Emploi/Formation</h4>
+
+        <div class="flex justify-content-center  flex-wrap justify-content-center">
+            
+            {% for nouveauteFormationAdulte in nouveauteFormationAdulte %}
+
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    <a href="{{ path('detail_book', {'slug': nouveauteFormationAdulte.slug}) }}">
+
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img src ="{{ asset('bookcover/' ~ nouveauteFormationAdulte.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ nouveauteFormationAdulte.titre }}">
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+
+            {% endfor %}  
+
+        </div>   
+
+        <div class="mt-4">{{ knp_pagination_render(nouveauteFormationAdulte) }}</div> 
+
+        {# Jeunesse #}
+
+        <h2 class="pb-2 mb-5 color_border" style="color: #7C2BA8;">Nouveautés jeunesse</h2>
+
+        <h4>Romans</h4>
+
+        <div class="flex justify-content-center  flex-wrap justify-content-center">
+            
+            {% for nouveauteLivreJeunesse in nouveauteLivreJeunesse %}
+
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    <a href="{{ path('detail_book', {'slug': nouveauteLivreJeunesse.slug}) }}">
+
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img src ="{{ asset('bookcover/' ~ nouveauteLivreJeunesse.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ nouveauteLivreJeunesse.titre }}">
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+
+            {% endfor %}  
+
+        </div>   
+
+        <div class="mt-4">{{ knp_pagination_render(nouveauteLivreJeunesse) }}</div>  
+
+        <h4>Bande-dessiné/Manga</h4>
+
+        <div class="flex justify-content-center  flex-wrap justify-content-center">
+            
+            {% for nouveauteBdJeunesse in nouveauteBdJeunesse %}
+ 
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    <a href="{{ path('detail_book', {'slug': nouveauteBdJeunesse.slug}) }}">
+
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img src ="{{ asset('bookcover/' ~ nouveauteBdJeunesse.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ nouveauteBdJeunesse.titre }}">
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+
+            {% endfor %}  
+
+        </div>   
+
+        <div class="mt-4">{{ knp_pagination_render(nouveauteBdJeunesse) }}</div> 
+
+        <h4>Livre scolaire</h4>
+
+        <div class="flex justify-content-center  flex-wrap justify-content-center">
+            
+            {% for nouveauteDocJeunesse in nouveauteDocJeunesse %}
+  
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    <a href="{{ path('detail_book', {'slug': nouveauteDocJeunesse.slug}) }}">
+
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img src ="{{ asset('bookcover/' ~ nouveauteDocJeunesse.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ nouveauteDocJeunesse.titre }}">
+                            </div>
+                        </div>
+
+                        
+                    </a>
+                    
+                </div>
+
+            {% endfor %}  
+
+        </div>   
+
+        <div class="mt-4">{{ knp_pagination_render(nouveauteDocJeunesse) }}</div>  
+
+        
+        <h2 class="pb-2 mb-5 color_border" style="color: #7C2BA8;">Nouveautés livres étrangers</h2>
+
+        <div class="flex justify-content-center  flex-wrap justify-content-center">
+            
+            {% for nouveauteLivreEtranger in nouveauteLivreEtranger %}
+
+                <div class="card mx-3 my-3" style="width: 12rem;">
+                    <a href="{{ path('detail_book', {'slug': nouveauteLivreEtranger.slug}) }}">
+
+                        <div class ="row align-items-end">
+                            <div class= "col">
+                                <img src ="{{ asset('bookcover/' ~ nouveauteLivreEtranger.imageLivre) }}" class=" img-fluid card-img-top" alt="{{'image' ~ nouveauteLivreEtranger.titre }}">
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+
+            {% endfor %}  
+
+        </div>   
+
+        <div class="mt-4">{{ knp_pagination_render(nouveauteLivreEtranger) }}</div>  
+
+
+        <div class="alignement">
+            <a class="btn show_btn" href="{{ path('accueil') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à l'accueil</a>
+        </div>
+
+
+    </div>
+
+{% endblock %}

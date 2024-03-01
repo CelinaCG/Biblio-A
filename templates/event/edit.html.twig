@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Modification de l'actualité{% endblock %}
+
+{% block body %}
+    <div class= "container">
+        <h1 class="text-center">Modification de l'actualité</h1>
+
+        {{ include('event/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+       
+        <hr>
+        <div class="alignement">
+            <a class="btn show_btn" href="{{ path('event_index') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à la liste</a>
+
+            {{ include('event/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

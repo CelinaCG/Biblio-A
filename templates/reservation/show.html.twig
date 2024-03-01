@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de la réservation{% endblock %}
+
+{% block body %}
+    <h1>Détail de la réservation</h1>
+
+    <p class="mt-4">Voici le récapitulatif de la réservation de l'adhérent(e):</p>
+
+    <table class="table table-striped mt-5">
+        <tbody>
+            {% for reservation in reservations %}
+                {# <tr>
+                    <th>Numéro de la réservation</th>
+                    <td>{{ reservation.id }}</td>
+                </tr> #}
+                <tr>
+                    <th>Nom de l'adhérent</th>
+                    <td>{{ reservation.user.lastname }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom de l'adhérent</th>
+                    <td>{{ reservation.user.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Titre de l'ouvrage</th>
+                    <td>{{ reservation.book.titre }}</td>
+                </tr>
+                <tr>
+                    <th>Date de début de réservation</th>
+                    <td>{{ reservation.dateDebut ? reservation.dateDebut|date('d-m-Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Date de fin de réservation</th>
+                    <td>{{ reservation.dateFin ? reservation.dateFin|date('d-m-Y') : '' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('librarian_profile') }}">Retour au profil</a>
+    
+    {# <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a> #}
+
+    <p>Pour supprimer une réservation, cliquer sur le bouton suivant. Vous serez ensuite redirigé vers votre profil.</p>
+    <p class="bold mb-3">Attention : toute suppression est définitive.</p>
+
+    {{ include('reservation/_delete_form.html.twig') }}
+{% endblock %}

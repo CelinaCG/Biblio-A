@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration Bibliothèque Atlantide - Nouvelle entrée{% endblock %}
+
+{% block body %}
+    <div class= "container">
+        <h1 class= "text-center">Creation d'une entrée</h1>
+
+        <p class="text-center mb-5">Tous les champs doivent être remplis. Si une rubrique n'est pas concernée par l'ouvrage en question, ajouter la mention "-".</p>
+
+        {{ include('book/_form.html.twig') }}
+
+        <div class="alignement">
+            <a class= "btn show_btn" href="{{ path('book_index') }}"><i class="fa fa-arrow-left mr-3"></i>Retour à la liste</a>
+        </div>
+    </div>
+{% endblock %}
